@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/modul04/TodoListBlazor/obj/Debug/net9.0
+/modul04/TodoListBlazor/obj/Release/net9.0
+/modul06/book-api-ef/obj/Debug/net9.0
+/modul06/book-api-ef/obj/Release/net9.0
+/.vs/Github/v17
+/.vs
