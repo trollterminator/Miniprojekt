@@ -16,3 +16,8 @@
 /TemplateAPI/kreddit/shared/bin/Debug/net9.0
 /TemplateAPI/TemplateAPI/bin/Debug/net9.0
 /TemplateAPI/kreddit/kreddit-app/.vs/kreddit-app
+/TemplateAPI/kreddit/kreddit-app/.vs/ProjectEvaluation
+/TemplateAPI/TemplateAPI/obj/project.assets.json
+/TemplateAPI/TemplateAPI/obj/project.nuget.cache
+/TemplateAPI/TemplateAPI/obj/TodoApi.csproj.nuget.dgspec.json
+/TemplateAPI/TemplateAPI/obj/TodoApi.csproj.nuget.g.props
