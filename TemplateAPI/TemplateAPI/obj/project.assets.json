@@ -6995,25 +6995,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jacob\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Chril\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\GIT\\3.semester\\Softwarearkitektur\\Miniprojekter\\Miniprojekt 1\\Github\\TemplateAPI\\TemplateAPI\\TodoApi.csproj",
+      "projectUniqueName": "C:\\Users\\Chril\\OneDrive - EFIF\\ita\\Semester3\\Softwarearkitektur\\Mini-Projekt\\TemplateAPI\\TemplateAPI\\TodoApi.csproj",
       "projectName": "TodoApi",
-      "projectPath": "C:\\GIT\\3.semester\\Softwarearkitektur\\Miniprojekter\\Miniprojekt 1\\Github\\TemplateAPI\\TemplateAPI\\TodoApi.csproj",
-      "packagesPath": "C:\\Users\\jacob\\.nuget\\packages\\",
-      "outputPath": "C:\\GIT\\3.semester\\Softwarearkitektur\\Miniprojekter\\Miniprojekt 1\\Github\\TemplateAPI\\TemplateAPI\\obj\\",
+      "projectPath": "C:\\Users\\Chril\\OneDrive - EFIF\\ita\\Semester3\\Softwarearkitektur\\Mini-Projekt\\TemplateAPI\\TemplateAPI\\TodoApi.csproj",
+      "packagesPath": "C:\\Users\\Chril\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Chril\\OneDrive - EFIF\\ita\\Semester3\\Softwarearkitektur\\Mini-Projekt\\TemplateAPI\\TemplateAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\jacob\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Chril\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -7089,7 +7087,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

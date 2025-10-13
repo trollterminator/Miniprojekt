@@ -16,3 +16,7 @@
 /TemplateAPI/kreddit/shared/bin/Debug/net9.0
 /TemplateAPI/TemplateAPI/bin/Debug/net9.0
 /TemplateAPI/kreddit/kreddit-app/.vs/kreddit-app
+*.json
+*.cache
+*.json
+*.props
