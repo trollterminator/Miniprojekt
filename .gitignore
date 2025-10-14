@@ -16,3 +16,21 @@
 /TemplateAPI/kreddit/shared/bin/Debug/net9.0
 /TemplateAPI/TemplateAPI/bin/Debug/net9.0
 /TemplateAPI/kreddit/kreddit-app/.vs/kreddit-app
+<<<<<<< HEAD
+/TemplateAPI/kreddit/kreddit-app/.vs/ProjectEvaluation
+=======
+*.json
+*.cache
+*.json
+*.props
+>>>>>>> 39be9096aa48696ad95adcc2a9c67792ab58a859
+/TemplateAPI/TemplateAPI/obj/project.assets.json
+/TemplateAPI/TemplateAPI/obj/project.nuget.cache
+/TemplateAPI/TemplateAPI/obj/TodoApi.csproj.nuget.dgspec.json
+/TemplateAPI/TemplateAPI/obj/TodoApi.csproj.nuget.g.props
+TemplateAPI/TemplateAPI/obj/project.assets.json
+TemplateAPI/TemplateAPI/obj/project.nuget.cache
+TemplateAPI/TemplateAPI/obj/TodoApi.csproj.nuget.dgspec.json
+TemplateAPI/TemplateAPI/obj/project.assets.json
+TemplateAPI/TemplateAPI/obj/project.nuget.cache
+TemplateAPI/TemplateAPI/obj/TodoApi.csproj.nuget.dgspec.json
