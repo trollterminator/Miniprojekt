@@ -17,8 +17,8 @@ builder.Services.AddCors(options =>
     });
 });
 
-// Tilføj DbContext factory som service.
-builder.Services.AddDbContext<BookContext>(options =>
+// Ændret: Bruger PostContext i stedet for BookContext
+builder.Services.AddDbContext<PostContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("ContextSQLite")));
 
 // Tilføj DataService så den kan bruges i endpoints
@@ -28,9 +28,6 @@ builder.Services.AddScoped<DataService>();
 /*
 builder.Services.Configure<JsonOptions>(options =>
 {
-    // Her kan man fjerne fejl der opstår, når man returnerer JSON med objekter,
-    // der refererer til hinanden i en cykel.
-    // (altså dobbelrettede associeringer)
     options.SerializerOptions.ReferenceHandler = 
         System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
 });
@@ -43,6 +40,10 @@ using (var scope = app.Services.CreateScope())
 {
     var dataService = scope.ServiceProvider.GetRequiredService<DataService>();
     dataService.SeedData(); // Fylder data på, hvis databasen er tom. Ellers ikke.
+
+    // Sørger for at databasen bliver oprettet, hvis den ikke findes
+    var db = scope.ServiceProvider.GetRequiredService<PostContext>();
+    db.Database.EnsureCreated();
 }
 
 app.UseHttpsRedirection();
@@ -62,32 +63,88 @@ app.MapGet("/", (DataService service) =>
     return new { message = "Hello World!" };
 });
 
-app.MapGet("/api/books", (DataService service) =>
+// POSTS
+
+// Henter alle posts (inkl. bruger og kommentarer)
+app.MapGet("/api/posts", (DataService service) =>
 {
-    return service.GetBooks().Select(b => new { 
-        bookId = b.BookId, 
-        title = b.Title, 
-        author = new {
-            b.Author.AuthorId, b.Author.Fullname
-        } 
+    return service.GetPosts().Select(p => new {
+        p.Id,
+        p.Title,
+        p.Content,
+        p.Upvotes,
+        p.Downvotes,
+        User = p.User != null ? new { p.User.Id, p.User.Username } : null,
+        Comments = p.Comments.Select(c => new {
+            c.Id,
+            c.Content,
+            c.Upvotes,
+            c.Downvotes,
+            User = c.User != null ? new { c.User.Id, c.User.Username } : null
+        })
     });
 });
 
-app.MapGet("/api/authors", (DataService service) =>
+// Henter en specifik post (inkl. kommentarer)
+app.MapGet("/api/posts/{id}", (DataService service, int id) =>
 {
-    return service.GetAuthors().Select(a => new { a.AuthorId, a.Fullname });
+    var post = service.GetPost(id);
+    if (post == null) return Results.NotFound(new { message = "Post not found" });
+
+    return Results.Ok(new
+    {
+        post.Id,
+        post.Title,
+        post.Content,
+        post.Upvotes,
+        post.Downvotes,
+        User = post.User != null ? new { post.User.Id, post.User.Username } : null,
+        Comments = post.Comments.Select(c => new {
+            c.Id,
+            c.Content,
+            c.Upvotes,
+            c.Downvotes,
+            User = c.User != null ? new { c.User.Id, c.User.Username } : null
+        })
+    });
 });
 
-app.MapGet("/api/authors/{id}", (DataService service, int id) => {
-    return service.GetAuthor(id);
-});
-
-app.MapPost("/api/books", (DataService service, NewBookData data) =>
+// Opretter en ny post
+app.MapPost("/api/posts", (DataService service, NewPostData data) =>
 {
-    string result = service.CreateBook(data.Titel, data.AuthorId);
+    string result = service.CreatePost(data.Title, data.Content, data.UserId);
     return new { message = result };
+});
+
+
+
+// COMMENTS
+
+// Tilføjer en kommentar til en post
+app.MapPost("/api/comments", (DataService service, NewCommentData data) =>
+{
+    string result = service.AddComment(data.PostId, data.Content, data.UserId);
+    return new { message = result };
+});
+
+
+// USERS
+
+// Henter alle brugere
+app.MapGet("/api/users", (DataService service) =>
+{
+    return service.GetUsers().Select(u => new { u.Id, u.Username });
+});
+
+// Henter en specifik bruger
+app.MapGet("/api/users/{id}", (DataService service, int id) =>
+{
+    var user = service.GetUser(id);
+    if (user == null) return Results.NotFound(new { message = "User not found" });
+    return Results.Ok(new { user.Id, user.Username });
 });
 
 app.Run();
 
-record NewBookData(string Titel, int AuthorId);
+record NewPostData(string Title, string Content, int UserId);
+record NewCommentData(int PostId, string Content, int UserId);
