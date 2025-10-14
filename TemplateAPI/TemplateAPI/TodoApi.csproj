@@ -18,7 +18,7 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\shared\shared.csproj" />
+		<ProjectReference Include="..\kreddit\shared\shared.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -116,7 +116,7 @@ app.MapPost("/api/posts", (DataService service, NewPostData data) =>
     return new { message = result };
 });
 
-record NewPostData(string Title, string Content, int UserId);
+
 
 // COMMENTS
 
@@ -127,7 +127,6 @@ app.MapPost("/api/comments", (DataService service, NewCommentData data) =>
     return new { message = result };
 });
 
-record NewCommentData(int PostId, string Content, int UserId);
 
 // USERS
 
@@ -146,3 +145,6 @@ app.MapGet("/api/users/{id}", (DataService service, int id) =>
 });
 
 app.Run();
+
+record NewPostData(string Title, string Content, int UserId);
+record NewCommentData(int PostId, string Content, int UserId);

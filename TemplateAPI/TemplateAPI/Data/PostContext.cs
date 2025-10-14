@@ -9,6 +9,13 @@ namespace Data
         public DbSet<Post> Posts => Set<Post>();
         public DbSet<Comment> Comments => Set<Comment>();
         public DbSet<User> Users => Set<User>();
+        public string DbPath { get; }
+
+        public PostContext()
+        {
+            DbPath = "bin/Post.db";
+        }
+
 
         public PostContext(DbContextOptions<PostContext> options)
             : base(options)
