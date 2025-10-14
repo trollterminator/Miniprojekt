@@ -28,7 +28,7 @@ else
 {
     <div class="contents">
         <h4>@Post.Title</h4>
-        <p><strong>User: @Post.User.Username, Votes: @(Post.Upvotes - Post.Downvotes)</strong></p>
+        <p><strong>User: @Post.User.Username, Votes: @(Post.Upvotes - Post.Downvotes)</strong></p> @* Change this to Post.user -string *@
         <p>@Post.Content</p>
     </div>
 
@@ -43,7 +43,7 @@ else
         @foreach (var comment in Post.Comments)
         {
             <tr>
-                <td>@comment.User.Username</td>
+                <td>@comment.User.Username</td>  @* change this comment.user -string *@
                 <td>@comment.Content</td>
                 <td>@(comment.Upvotes - comment.Downvotes)</td>
                 <td><button @onclick="() => Upvote(comment.Id)">Upvote</button></td>
