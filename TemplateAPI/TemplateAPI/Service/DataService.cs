@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
 using Data;
-using shared.Model; // Ændret namespace — bruger dine Shared modeller
+using shared.Model; // Ændret namespace — bruger vores Shared modeller
 
 namespace Service;
 
