@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NP9+yEFEn+E=",
+  "dgSpecHash": "q3C1NQFgTCY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Chril\\OneDrive - EFIF\\ita\\Semester3\\Softwarearkitektur\\Mini-Projekt\\TemplateAPI\\TemplateAPI\\TodoApi.csproj",
+  "projectFilePath": "C:\\Users\\Chril\\OneDrive\\Documents\\GitHub\\MiniProjekt\\Miniprojekt\\TemplateAPI\\TemplateAPI\\TodoApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Chril\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\Chril\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
