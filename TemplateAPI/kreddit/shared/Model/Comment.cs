@@ -6,8 +6,8 @@ public class Comment
     public string Content { get; set; }
     public int Upvotes { get; set; }
     public int Downvotes { get; set; }
-    public User User { get; set; }
-    public Comment(string content = "", int upvotes = 0, int downvotes = 0, User user = null)
+    public string User { get; set; }
+    public Comment(string content = "", int upvotes = 0, int downvotes = 0, string user = null)
     {
         Content = content;
         Upvotes = upvotes;
