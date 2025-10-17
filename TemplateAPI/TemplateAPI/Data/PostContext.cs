@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
 using shared.Model;
 
 namespace Data
@@ -8,14 +7,13 @@ namespace Data
     {
         public DbSet<Post> Posts => Set<Post>();
         public DbSet<Comment> Comments => Set<Comment>();
-        public DbSet<User> Users => Set<User>();
+
         public string DbPath { get; }
 
         public PostContext()
         {
             DbPath = "bin/Post.db";
         }
-
 
         public PostContext(DbContextOptions<PostContext> options)
             : base(options)
@@ -26,17 +24,7 @@ namespace Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Eksempel på relationer:
-            modelBuilder.Entity<Post>()
-                .HasOne(p => p.User)
-                .WithMany()
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<Comment>()
-                .HasOne(c => c.User)
-                .WithMany()
-                .OnDelete(DeleteBehavior.Cascade);
-
+            // Relation mellem Post og Comment
             modelBuilder.Entity<Comment>()
                 .HasOne<Post>()
                 .WithMany(p => p.Comments)
