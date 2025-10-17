@@ -1,11 +1,16 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace shared.Model;
 
 public class Post {
     public int Id { get; set; }
+
+    [Required]
     public string Title { get; set; }
+    [Required]
     public string Content { get; set; }
-    public int Upvotes { get; set; }
-    public int Downvotes { get; set; }
+    public int Upvotes { get; set; } = 0;
+    public int Downvotes { get; set; } = 0;
     public string User { get; set; }
     public List<Comment> Comments { get; set; } = new List<Comment>();
     public Post(string user, string title = "", string content = "", int upvotes = 0, int downvotes = 0) {

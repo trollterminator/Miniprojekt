@@ -1,5 +1,6 @@
-using Microsoft.EntityFrameworkCore;
 using Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using shared.Model;
 
 namespace Service;
@@ -96,6 +97,72 @@ public class DataService
         db.SaveChanges();
 
         return "Comment added";
+    }
+
+    public string UpvotePost(int postId)
+    {
+        var postToUpvote = db.Posts.Include(p => p.Comments).FirstOrDefault(p => p.Id == postId);
+        if (postToUpvote == null)
+        {
+            return "Post not found";
+        }
+
+        postToUpvote.Upvotes++;
+        db.SaveChanges();
+
+        return "Post upvoted!";
+    }
+
+    public string DownvotePost(int postId)
+    {
+        var postToDownvote = db.Posts.Include(p => p.Comments).FirstOrDefault(p => p.Id == postId);
+        if (postToDownvote == null)
+        {
+            return "Post not found";
+        }
+
+        postToDownvote.Upvotes--;
+        db.SaveChanges();
+
+        return "Post downvoted!";
+    }
+
+    public string UpvoteComment(int postId, int commentId)
+    {
+        var postWithComment = db.Posts.Include(p => p.Comments).FirstOrDefault(p => p.Id == postId);
+        if (postWithComment == null)
+        {
+            return "Post not found";
+        }
+        var commentToUpvote = postWithComment.Comments.FirstOrDefault(c => c.Id == commentId);
+
+        if (commentToUpvote == null)
+        {
+            return "Comment not found";
+        }
+
+        commentToUpvote.Upvotes++;
+        db.SaveChanges();
+        return "Comment upvoted!";
+    }
+
+    public string DownvoteComment(int postId, int commentId)
+    {
+        var postWithComment = db.Posts.Include(p => p.Comments).FirstOrDefault(p => p.Id == postId);
+        if (postWithComment == null)
+        {
+            return "Post not found";
+        }
+        var commentToDownvote = postWithComment.Comments.FirstOrDefault(c => c.Id == commentId);
+
+        if (commentToDownvote == null)
+        {
+            return "Comment not found";
+        }
+
+        commentToDownvote.Upvotes--;
+        db.SaveChanges();
+        return "Comment downvoted!";
     }
 
     // Genererer et tilfældigt navn, hvis brugeren ikke indtaster et
