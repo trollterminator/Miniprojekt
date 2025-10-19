@@ -31,12 +31,12 @@ public class ApiService
         return await http.GetFromJsonAsync<Post>(url);
     }
 
-    public async Task<Comment> CreateComment(string content, int postId, int userId)
+    public async Task<Comment> CreateComment(string content, int postId, string user)
     {
         string url = $"{baseAPI}posts/{postId}/comments";
      
         // Post JSON to API, save the HttpResponseMessage
-        HttpResponseMessage msg = await http.PostAsJsonAsync(url, new { content, userId });
+        HttpResponseMessage msg = await http.PostAsJsonAsync(url, new { content, user });
 
         // Get the JSON string from the response
         string json = msg.Content.ReadAsStringAsync().Result;
