@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Data;
 using Service;
+using shared.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,14 +53,14 @@ app.MapGet("/api/posts", (DataService service) =>
         p.Content,
         p.Upvotes,
         p.Downvotes,
-        User = p.User,
+        p.User,
         Comments = p.Comments.Select(c => new
         {
             c.Id,
             c.Content,
             c.Upvotes,
             c.Downvotes,
-            User = c.User
+            c.User
         })
     });
 });
@@ -78,14 +79,14 @@ app.MapGet("/api/posts/{id}", (DataService service, int id) =>
         post.Content,
         post.Upvotes,
         post.Downvotes,
-        User = post.User,
+        post.User,
         Comments = post.Comments.Select(c => new
         {
             c.Id,
             c.Content,
             c.Upvotes,
             c.Downvotes,
-            User = c.User
+            c.User
         })
     });
 });
@@ -103,6 +104,36 @@ app.MapPost("/api/comments", (DataService service, NewCommentData data) =>
     string result = service.AddComment(data.PostId, data.Content, data.User);
     return new { message = result };
 });
+
+//PUT - Upvote post
+app.MapPut("/api/upvotepost/{postid}", (DataService service, int postid) =>
+{
+    var result = service.UpvotePost(postid);
+    return new { message = result };
+});
+
+//PUT - Downvote post
+app.MapPut("/api/downvotepost/{postid}", (DataService service, int postid) =>
+{
+    var result = service.DownvotePost(postid);
+    return new { message = result };
+});
+
+//PUT - Upvote comment
+app.MapPut("/api/upvotecomment/{postid}/{commentid}", (DataService service, int postid, int commentid) =>
+{
+    var result = service.UpvoteComment(postid, commentid);
+    return new { message = result };
+});
+
+
+//PUT - Downvote comment
+app.MapPut("/api/downvotecomment/{postid}/{commentid}", (DataService service, int postid, int commentid) =>
+{
+    var result = service.DownvoteComment(postid, commentid);
+    return new { message = result };
+});
+
 
 app.Run();
 
