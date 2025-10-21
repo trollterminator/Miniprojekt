@@ -9,6 +9,7 @@ public class Post {
     public string Title { get; set; }
     [Required]
     public string Content { get; set; }
+    public DateOnly Date { get; init; } = DateOnly.FromDateTime(DateTime.Now);
     public int Upvotes { get; set; } = 0;
     public int Downvotes { get; set; } = 0;
     public string User { get; set; }

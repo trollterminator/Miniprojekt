@@ -4,6 +4,7 @@
 <div>
     <br/>
     <h3>Write a comment</h3>
+    <input placeholder="User" type="input" id="user" @bind-value="user" />
     <input placeholder="Content" type="input" id="content" @bind-value="content"/>
     <button id="createPostButton" type="button" @onclick="CreateNewComment">Post comment</button>
 </div>
@@ -16,14 +17,20 @@
     [Parameter]
     public string User { get; set; }
     private string? content;
+    private string user;
     private async void CreateNewComment()
     {
         if (content == null)
         {
             return;
         }
+<<<<<<< HEAD
         // TODO: Provide list of users from dropdown, or maybe just convert
         // from username to UserId
         await apiService.CreateComment(content, PostId, User); // UserId: 2
+=======
+        await apiService.CreateComment(content, PostId, user);
+        StateHasChanged();
+>>>>>>> Anders
     }
 }
