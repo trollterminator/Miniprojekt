@@ -28,7 +28,7 @@ else
 {
     <div class="contents">
         <h4>@Post.Title</h4>
-        <p><strong>User: @Post.User.Username, Votes: @(Post.Upvotes - Post.Downvotes)</strong></p>
+        <p><strong>User: @Post.User, Votes: @(Post.Upvotes - Post.Downvotes)</strong></p> 
         <p>@Post.Content</p>
     </div>
 
@@ -43,7 +43,7 @@ else
         @foreach (var comment in Post.Comments)
         {
             <tr>
-                <td>@comment.User.Username</td>
+                <td>@comment.User</td>
                 <td>@comment.Content</td>
                 <td>@(comment.Upvotes - comment.Downvotes)</td>
                 <td><button @onclick="() => Upvote(comment.Id)">Upvote</button></td>
@@ -55,7 +55,7 @@ else
 
     <!-- This demonstrates how to pass in PostId to the component 'CreateComment'. See how 
          it is used in the file CreateComment.razor -->
-    <CreateComment PostId=@PostId></CreateComment>
+    <CreateComment PostId=@PostId User="@Post.User"></CreateComment>
 }
 
 @code {
